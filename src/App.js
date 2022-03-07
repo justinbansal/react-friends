@@ -21,6 +21,8 @@ function App() {
       id: 1,
       photo: ross,
       background_image: rossBg,
+      occupation: 'Paleontologist at Museum of Natural History',
+      location: 'Ugly Naked Guy\'\s old apartment',
     },
     {
       message: "And I have to live with a boy!",
@@ -28,6 +30,8 @@ function App() {
       id: 2,
       photo: monica,
       background_image: monicaBg,
+      occupation: 'Head chef at Javu',
+      location: 'Apartment 20',
     },
     {
       message: "Hi, I’m Chandler. I make jokes when I’m uncomfortable.",
@@ -35,6 +39,8 @@ function App() {
       id: 3,
       photo: chandler,
       background_image: chandlerBg,
+      occupation: 'Statistical analysis and data reconfiguration',
+      location: 'Apartment 19',
     }
   ]
 
