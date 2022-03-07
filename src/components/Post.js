@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 
 import Comment from "./Comment";
@@ -11,19 +11,21 @@ import ViewCommentsButton from "./ViewCommentsButton";
 
 const StyledPost = styled.div`
   padding: 2em;
-  margin: 1em;
-  width: 500px;
+  max-width: 500px;
   background: dodgerblue;
   color: white;
   border-radius: 10px;
+  text-align: center;
 `
 
 function Post(props) {
   const [comments, addComment] = useState([]);
   const [commentView, changeView] = useState(false);
 
-  const { postId } = useParams();
-  const post = postId ? props.posts.filter(post => postId == post.id)[0] : props.post;
+  let { postId } = useParams();
+  postId = parseInt(postId, 10);
+
+  const post = postId ? props.posts.filter(post => post.id === postId)[0] : props.post;
 
   useEffect(() => {
     document.title = `You clicked on a post by ${post.author}.`
@@ -48,9 +50,7 @@ function Post(props) {
         <ProfilePhoto
           photo={post.photo}
         />
-        <Link to={`/posts/${post.id}`}>
-          <h2>{post.author}</h2>
-        </Link>
+        <h2>{post.author}</h2>
         <p>{post.message}</p>
         <LikeButton />
         <CommentButton
