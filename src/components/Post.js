@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from "styled-components";
 
 import Comment from "./Comment";
@@ -9,9 +9,15 @@ import LikeButton from './LikeButton';
 import BackButton from "./BackButton";
 import ViewCommentsButton from "./ViewCommentsButton";
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const StyledPost = styled.div`
   padding: 2em;
-  max-width: 500px;
+  margin: 1em;
+  width: 500px;
   background: dodgerblue;
   color: white;
   border-radius: 10px;
@@ -50,7 +56,9 @@ function Post(props) {
         <ProfilePhoto
           photo={post.photo}
         />
-        <h2>{post.author}</h2>
+        <StyledLink to={`/posts/${post.id}`}>
+          <h2>{post.author}</h2>
+        </StyledLink>
         <p>{post.message}</p>
         <LikeButton />
         <CommentButton
