@@ -1,7 +1,7 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 import Header from './Header';
-import Feed from './Feed';
 import Footer from './Footer';
 
 function Home(props) {
@@ -12,7 +12,7 @@ function Home(props) {
       <p>🪝Featuring Functional Components and React Hooks</p>
       <p>💅🏽 Styled using styled-components</p>
       <p>🧭 Navigation with React Router@6</p>
-      <Feed posts={props.posts}></Feed>
+      <Outlet />
       <Footer info="Fun with Friends 2022"></Footer>
     </div>
   )
