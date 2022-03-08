@@ -41,8 +41,6 @@ function App() {
   const [insights, setInsights] = useState(postInsights);
   const [log, setLog] = useState([]);
 
-
-  const [likes, setLikes] = useState(0);
   const data = [
     {
       message: "We were on a break!",
@@ -80,7 +78,6 @@ function App() {
         element={
           <Home
             posts={data}
-            likes={likes}
             insights={insights}
             log={log}
           />
@@ -91,8 +88,6 @@ function App() {
           element={
             <Feed
               posts={data}
-              setLikes={setLikes}
-              likes={likes}
               insights={insights}
               setInsights={setInsights}
               log={log}

@@ -19,7 +19,6 @@ function Header(props) {
       >
       </Nav>
       <Notifications
-        likes={props.likes}
         insights={props.insights}
         log={props.log}
       >

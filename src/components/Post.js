@@ -61,8 +61,6 @@ function Post(props) {
         </StyledLink>
         <p>{post.message}</p>
         <LikeButton
-          setLikes={props.setLikes}
-          likes={props.likes}
           insights={props.insights}
           setInsights={props.setInsights}
           id={post.id}

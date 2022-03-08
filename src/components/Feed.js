@@ -14,8 +14,6 @@ function Feed(props) {
       <Post
         post={post}
         key={post.id}
-        setLikes={props.setLikes}
-        likes={props.likes}
         insights={props.insights}
         setInsights={props.setInsights}
         log={props.log}

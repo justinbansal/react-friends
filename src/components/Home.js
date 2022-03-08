@@ -9,7 +9,6 @@ function Home(props) {
     <div className="App">
       <Header
         title="Fun with Friends"
-        likes={props.likes}
         insights={props.insights}
         log={props.log}
       />
