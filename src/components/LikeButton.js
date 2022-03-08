@@ -9,10 +9,12 @@ const StyledButton = styled.button`
 `;
 
 function LikeButton(props) {
+  const [likes, setLikes] = useState(0);
   return (
     <div>
       <StyledButton
         onClick={() => {
+          setLikes(likes + 1)
           const insights = props.insights.slice();
           const log = props.log.slice();
           insights.filter(post => {
@@ -33,7 +35,7 @@ function LikeButton(props) {
         <img src={like} alt="Like button"></img>
       </StyledButton>
       <div>
-        <small>{props.likes > 0 ? props.likes > 1 ? `${props.likes} people liked this` : `${props.likes} person liked this` : null}</small>
+        <small>{likes > 0 ? likes > 1 ? `${likes} people liked this` : `${likes} person liked this` : null}</small>
       </div>
     </div>
   )
