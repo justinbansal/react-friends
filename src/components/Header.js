@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import Nav from './Nav';
+import Notifications from "./Notifications";
 
 const StyledHeader = styled.header`
   background: papayawhip;
@@ -17,6 +18,12 @@ function Header(props) {
         links={props.links}
       >
       </Nav>
+      <Notifications
+        likes={props.likes}
+        insights={props.insights}
+        log={props.log}
+      >
+      </Notifications>
     </StyledHeader>
   )
 }

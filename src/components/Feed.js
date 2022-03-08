@@ -11,7 +11,16 @@ const StyledFeed = styled.div`
 function Feed(props) {
   const posts = props.posts.map(post => {
     return (
-      <Post post={post} key={post.id}/>
+      <Post
+        post={post}
+        key={post.id}
+        setLikes={props.setLikes}
+        likes={props.likes}
+        insights={props.insights}
+        setInsights={props.setInsights}
+        log={props.log}
+        setLog={props.setLog}
+      />
     )
   })
 

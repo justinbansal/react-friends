@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -14,6 +15,34 @@ import Feed from './components/Feed';
 import PostDetails from './components/PostDetails';
 
 function App() {
+
+  // Notifications gets total number of notifications
+  const postInsights = [
+    {
+      id: 1,
+      author: "Ross Geller",
+      likes: 0,
+      comments: 0
+    },
+    {
+      id: 2,
+      author: "Monica Geller",
+      likes: 0,
+      comments: 0
+    },
+    {
+      id: 3,
+      author: "Chandler Bing",
+      likes: 0,
+      comments: 0
+    },
+  ];
+
+  const [insights, setInsights] = useState(postInsights);
+  const [log, setLog] = useState([]);
+
+
+  const [likes, setLikes] = useState(0);
   const data = [
     {
       message: "We were on a break!",
@@ -22,7 +51,7 @@ function App() {
       photo: ross,
       background_image: rossBg,
       occupation: 'Paleontologist at Museum of Natural History',
-      location: 'Ugly Naked Guy\'\s old apartment',
+      location: "Ugly Naked Guy's old apartment",
     },
     {
       message: "And I have to live with a boy!",
@@ -46,8 +75,31 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home posts={data}/>} >
-        <Route path="/posts" element={<Feed posts={data}/>} />
+      <Route
+        path="/"
+        element={
+          <Home
+            posts={data}
+            likes={likes}
+            insights={insights}
+            log={log}
+          />
+        }
+      >
+        <Route
+          path="/posts"
+          element={
+            <Feed
+              posts={data}
+              setLikes={setLikes}
+              likes={likes}
+              insights={insights}
+              setInsights={setInsights}
+              log={log}
+              setLog={setLog}
+            />
+          }
+        />
       </Route>
       <Route path="/posts/:postId" element={<PostDetails posts={data} />} />
     </Routes>

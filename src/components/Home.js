@@ -7,7 +7,12 @@ import Footer from './Footer';
 function Home(props) {
   return (
     <div className="App">
-      <Header title="Fun with Friends"/>
+      <Header
+        title="Fun with Friends"
+        likes={props.likes}
+        insights={props.insights}
+        log={props.log}
+      />
       <h2>👋🏽 Welcome to Fun with Friends</h2>
       <p>🪝Featuring Functional Components and React Hooks</p>
       <p>💅🏽 Styled using styled-components</p>

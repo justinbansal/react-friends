@@ -60,7 +60,16 @@ function Post(props) {
           <h2>{post.author}</h2>
         </StyledLink>
         <p>{post.message}</p>
-        <LikeButton />
+        <LikeButton
+          setLikes={props.setLikes}
+          likes={props.likes}
+          insights={props.insights}
+          setInsights={props.setInsights}
+          id={post.id}
+          log={props.log}
+          setLog={props.setLog}
+          photo={post.photo}
+        />
         <CommentButton
           comments={comments}
           addComment={addComment}
