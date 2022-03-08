@@ -74,6 +74,12 @@ function Post(props) {
           comments={comments}
           addComment={addComment}
           changeView={changeView}
+          insights={props.insights}
+          setInsights={props.setInsights}
+          id={post.id}
+          log={props.log}
+          setLog={props.setLog}
+          photo={post.photo}
         ></CommentButton>
         {comments.length > 0 ? (
           <ViewCommentsButton

@@ -34,6 +34,24 @@ function CommentForm(props) {
     props.commentMode(false);
 
     props.changeView(true);
+
+    // New logic for updating our log state with comment
+    const insights = props.insights.slice();
+    const log = props.log.slice();
+    insights.filter(post => {
+      if (post.id === props.id) {
+        post.comments += 1;
+        log.push({
+          author: post.author,
+          message: `${post.author}'s post got a new comment`,
+          photo: props.photo,
+        })
+      }
+      return post;
+    })
+    props.setInsights(insights);
+    props.setLog(log);
+
   }
 
   return (

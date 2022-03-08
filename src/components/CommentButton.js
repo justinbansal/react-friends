@@ -18,6 +18,12 @@ function CommentButton(props) {
           addComment={props.addComment}
           commentMode={commentMode}
           changeView={props.changeView}
+          insights={props.insights}
+          setInsights={props.setInsights}
+          id={props.id}
+          log={props.log}
+          setLog={props.setLog}
+          photo={props.photo}
         />
       ) : null}
       <StyledButton

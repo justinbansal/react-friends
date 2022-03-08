@@ -29,6 +29,10 @@ const StyledInsight = styled.div`
   border-radius: 10px;
 `;
 
+const StyledMessage = styled.p`
+  margin: 0 1em;
+`;
+
 function Notifications(props) {
   const [drawer, showDrawer] = useState(false);
 
@@ -40,8 +44,8 @@ function Notifications(props) {
           <ProfilePhoto
             photo={insight.photo}
             size="30"/>
-          {insight.message}
-        </StyledInsight>
+          <StyledMessage>{insight.message}</StyledMessage>
+      </StyledInsight>
     )
   })
 
