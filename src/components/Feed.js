@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 
 import Post from './Post';
+import Header from "./Header";
+import Footer from "./Footer";
+import AddPost from "../features/posts/AddPost";
 
 const StyledFeed = styled.div`
   display: flex;
 `;
 
 function Feed(props) {
-  const posts = props.posts.map(post => {
+  const posts = useSelector(state => state.posts.map(post => {
     return (
       <Post
         post={post}
@@ -20,12 +23,22 @@ function Feed(props) {
         setLog={props.setLog}
       />
     )
-  })
+  }));
 
   return (
-    <StyledFeed>
+    <div>
+      <Header
+        title="Fun with Friends"
+        insights={props.insights}
+        log={props.log}
+      />
+      <AddPost />
+      <StyledFeed>
       {posts}
-    </StyledFeed>
+      </StyledFeed>
+      <Footer info="Fun with Friends 2022"></Footer>
+    </div>
+
   )
 }
 

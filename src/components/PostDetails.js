@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
 
@@ -46,11 +47,11 @@ const SVGWrapper = styled.div`
   align-items: center;
 `;
 
-function PostDetails(props) {
+function PostDetails() {
   let { postId } = useParams();
   postId = parseInt(postId, 10);
 
-  const post = props.posts.find(post => post.id === postId);
+  const post = useSelector(state => state.posts.find(post => post.id === postId));
 
   return (
     <StyledPost>
