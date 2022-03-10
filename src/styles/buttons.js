@@ -7,3 +7,8 @@ export const PrimaryButton = styled.button`
   border: 0;
   border-radius: 10px;
 `;
+
+export const SecondaryButton = styled(PrimaryButton)`
+  background: midnightblue;
+  color: white;
+`;
