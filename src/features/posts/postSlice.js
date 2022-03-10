@@ -10,8 +10,9 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState: [
     {
-      message: "We were on a break!",
-      author: "Ross Geller",
+      quote: "We were on a break!",
+      name: "Ross Geller",
+      episode: 'The Last One',
       id: 1,
       photo: ross,
       background_image: rossBg,
@@ -19,8 +20,9 @@ export const postsSlice = createSlice({
       location: "Ugly Naked Guy's old apartment",
     },
     {
-      message: "And I have to live with a boy!",
-      author: "Monica Geller",
+      quote: "And I have to live with a boy!",
+      name: "Monica Geller",
+      episode: 'The One With All the Wedding Dresses',
       id: 2,
       photo: monica,
       background_image: monicaBg,
@@ -28,8 +30,9 @@ export const postsSlice = createSlice({
       location: 'Apartment 20',
     },
     {
-      message: "Hi, I’m Chandler. I make jokes when I’m uncomfortable.",
-      author: "Chandler Bing",
+      quote: "Hi, I’m Chandler. I make jokes when I’m uncomfortable.",
+      name: "Chandler Bing",
+      episode: 'The One That Could Have Been',
       id: 3,
       photo: chandler,
       background_image: chandlerBg,

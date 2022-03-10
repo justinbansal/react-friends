@@ -17,7 +17,7 @@ const StyledLink = styled(Link)`
 const StyledPost = styled.div`
   padding: 2em;
   margin: 1em;
-  width: 500px;
+  flex: 1 1 400px;
   background: dodgerblue;
   color: white;
   border-radius: 10px;
@@ -57,9 +57,10 @@ function Post(props) {
           photo={post.photo}
         />
         <StyledLink to={`/posts/${post.id}`}>
-          <h2>{post.author}</h2>
+          <h2>{post.name}</h2>
         </StyledLink>
-        <p>{post.message}</p>
+        <p>{post.episode}</p>
+        <p>{post.quote}</p>
         <LikeButton
           insights={props.insights}
           setInsights={props.setInsights}

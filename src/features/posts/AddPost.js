@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { nanoid } from "@reduxjs/toolkit";
+import { addPost } from './postSlice';
 import styled from "styled-components";
 
 import { SecondaryButton } from '../../styles/buttons';
@@ -15,7 +18,7 @@ const StyledForm = styled.form`
 
   input,
   textarea {
-    padding: 1em 1.5em;
+    padding: 0.5em 1.5em;
     border: 0;
     margin: 1em 0.5em;
   }
@@ -29,43 +32,71 @@ const FormGroup = styled.div`
 `
 
 function AddPost() {
-  const [title, setTitle] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [episode, setEpisode] = useState('');
+  const [quote, setQuote] = useState('');
 
-  function handleTitleChange(e) {
-    setTitle(e.target.value);
+  const dispatch = useDispatch();
+
+  function handleNameChange(e) {
+    setName(e.target.value);
   }
 
-  function handleMessageChange(e) {
-    setMessage(e.target.value);
+  function handleEpisodeChange(e) {
+    setEpisode(e.target.value);
+  }
+
+  function handleQuoteChange(e) {
+    setQuote(e.target.value);
   }
 
   return (
     <Wrapper>
-      <h2>Add Post</h2>
+      <h2>Add your favourite Character</h2>
       <StyledForm>
         <FormGroup>
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="name">Name:</label>
           <input
-            name="title"
+            name="name"
             type="text"
-            onChange={handleTitleChange}
-            value={title}
+            onChange={handleNameChange}
+            value={name}
           />
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="message">Message:</label>
-          <textarea
-            name="message"
-            id="message"
-            value={message}
-            onChange={handleMessageChange}
+          <label htmlFor="episode">Favourite Episode:</label>
+          <input
+            name="episode"
+            type="text"
+            onChange={handleEpisodeChange}
+            value={episode}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="quote">Favourite Quote:</label>
+          <input
+            name="quote"
+            type="text"
+            onChange={handleQuoteChange}
+            value={quote}
           />
         </FormGroup>
       </StyledForm>
 
-      <SecondaryButton>Save Post</SecondaryButton>
+      <SecondaryButton
+        onClick={() => {
+          dispatch(addPost({
+            id: nanoid(),
+            name: name,
+            episode: episode,
+            quote: quote,
+          }))
+        }}
+      >
+        Save Post
+      </SecondaryButton>
     </Wrapper>
   )
 }

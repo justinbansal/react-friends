@@ -9,6 +9,7 @@ import AddPost from "../features/posts/AddPost";
 
 const StyledFeed = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 function Feed(props) {
