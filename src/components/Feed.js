@@ -13,7 +13,7 @@ const StyledFeed = styled.div`
 `;
 
 function Feed(props) {
-  const posts = useSelector(state => state.posts.map(post => {
+  const posts = useSelector(state => state.posts.entries.map(post => {
     return (
       <Post
         post={post}

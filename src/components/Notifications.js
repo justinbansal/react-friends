@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import { PrimaryButton } from '../styles/buttons';
 
@@ -35,16 +36,18 @@ const StyledMessage = styled.p`
 
 function Notifications(props) {
   const [drawer, showDrawer] = useState(false);
+  const reactions = useSelector(state => state.posts.activity);
 
-  const insights = props.log.map((insight, index) => {
+
+  const activity = reactions.map((activity, index) => {
     return (
       <StyledInsight
         key={index}
         >
           <ProfilePhoto
-            photo={insight.photo}
+            photo={activity.photo}
             size="30"/>
-          <StyledMessage>{insight.message}</StyledMessage>
+          <StyledMessage>{activity.message}</StyledMessage>
       </StyledInsight>
     )
   })
@@ -52,12 +55,12 @@ function Notifications(props) {
   return (
     <div>
       <PrimaryButton
-        onClick={props.log.length > 0 ? () => showDrawer(!drawer) : null}
+        onClick={activity.length > 0 ? () => showDrawer(!drawer) : null}
       >
-        {props.log.length > 0 ? `Toggle notifications (${insights.length}) `: 'No new notifications'}
+        {activity.length > 0 ? `Toggle notifications (${activity.length}) `: 'No new notifications'}
       </PrimaryButton>
       <StyledDrawer openDrawer={drawer}>
-        {insights}
+        {activity}
       </StyledDrawer>
     </div>
   )

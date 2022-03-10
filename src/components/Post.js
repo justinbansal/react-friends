@@ -68,6 +68,7 @@ function Post(props) {
           log={props.log}
           setLog={props.setLog}
           photo={post.photo}
+          name={post.name}
         />
         <CommentButton
           comments={comments}

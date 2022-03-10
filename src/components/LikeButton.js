@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { postsSlice, updateReactions } from '../features/posts/postSlice';
 import styled from "styled-components";
 
 import like from '../like.png';
@@ -9,27 +11,22 @@ const StyledButton = styled.button`
 `;
 
 function LikeButton(props) {
-  const [likes, setLikes] = useState(0);
+  const { id, name } = props;
+  const likes = useSelector(state => {
+    return state.posts.entries.find(post => post.id === id).reactions.likes;
+  })
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       <StyledButton
         onClick={() => {
-          setLikes(likes + 1)
-          const insights = props.insights.slice();
-          const log = props.log.slice();
-          insights.filter(post => {
-            if (post.id === props.id) {
-              post.likes += 1;
-              log.push({
-                author: post.author,
-                message: `${post.author}'s post just got a like`,
-                photo: props.photo,
-              })
-            }
-            return post;
-          })
-          props.setInsights(insights);
-          props.setLog(log);
+          dispatch(updateReactions({
+            id: id,
+            reaction: 'likes',
+            message: `A post about ${name} was just liked`,
+          }))
         }}
       >
         <img src={like} alt="Like button"></img>
