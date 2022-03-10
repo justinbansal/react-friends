@@ -54,6 +54,7 @@ export const postsSlice = createSlice({
       }
     ],
     activity: [],
+    openDrawer: false,
   },
   reducers: {
     addPost: (state, action) => {
@@ -68,9 +69,12 @@ export const postsSlice = createSlice({
       }
 
       state.activity.push(action.payload);
-    }
+    },
+    updateDrawer: state => {
+      state.openDrawer = !state.openDrawer;
+    },
   }
 })
 
-export const { addPost, updateReactions } = postsSlice.actions;
+export const { addPost, updateReactions, updateDrawer } = postsSlice.actions;
 export default postsSlice.reducer;

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateDrawer } from '../features/posts/postSlice';
 import styled from "styled-components";
 import { PrimaryButton } from '../styles/buttons';
 
@@ -35,9 +36,10 @@ const StyledMessage = styled.p`
 `;
 
 function Notifications(props) {
-  const [drawer, showDrawer] = useState(false);
+  const drawer = useSelector(state => state.posts.openDrawer);
   const reactions = useSelector(state => state.posts.activity);
 
+  const dispatch = useDispatch();
 
   const activity = reactions.map((activity, index) => {
     return (
@@ -55,7 +57,7 @@ function Notifications(props) {
   return (
     <div>
       <PrimaryButton
-        onClick={activity.length > 0 ? () => showDrawer(!drawer) : null}
+        onClick={activity.length > 0 ? () => dispatch(updateDrawer()) : null}
       >
         {activity.length > 0 ? `Toggle notifications (${activity.length}) `: 'No new notifications'}
       </PrimaryButton>

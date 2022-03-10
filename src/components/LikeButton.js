@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { postsSlice, updateReactions } from '../features/posts/postSlice';
+import { postsSlice, updateReactions, updateDrawer } from '../features/posts/postSlice';
 import styled from "styled-components";
 
 import like from '../like.png';
@@ -27,6 +27,8 @@ function LikeButton(props) {
             reaction: 'likes',
             message: `A post about ${name} was just liked`,
           }))
+
+          dispatch(updateDrawer());
         }}
       >
         <img src={like} alt="Like button"></img>
