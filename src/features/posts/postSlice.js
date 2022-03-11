@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 import ross from '../../ross.jpeg';
 import rossBg from '../../ross-bg.jpeg';
 import monica from '../../monica.jpeg';
@@ -57,8 +57,24 @@ export const postsSlice = createSlice({
     openDrawer: false,
   },
   reducers: {
-    addPost: (state, action) => {
-      state.entries.push(action.payload);
+    addPost: {
+      reducer(state, action) {
+        state.entries.push(action.payload);
+      },
+      prepare(name, episode, quote) {
+        return {
+          payload: {
+            id: nanoid(),
+            name,
+            episode,
+            quote,
+            reactions: {
+              likes: 0,
+              comments: 0,
+            }
+          }
+        }
+      }
     },
     updateReactions: (state, action) => {
       // update likes or comments

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { nanoid } from "@reduxjs/toolkit";
 import { addPost } from './postSlice';
 import styled from "styled-components";
 
@@ -87,12 +86,7 @@ function AddPost() {
 
       <SecondaryButton
         onClick={() => {
-          dispatch(addPost({
-            id: nanoid(),
-            name: name,
-            episode: episode,
-            quote: quote,
-          }))
+          dispatch(addPost(name, episode, quote))
         }}
       >
         Save Post
