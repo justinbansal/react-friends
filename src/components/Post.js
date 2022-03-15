@@ -54,14 +54,14 @@ function Post(props) {
     return (
       <StyledPost>
         <ProfilePhoto
-          photo={post.photo}
+          photo={post.strDrinkThumb}
         />
         <StyledLink to={`/posts/${post.id}`}>
-          <h2>{post.name}</h2>
+          <h2>{post.strDrink}</h2>
         </StyledLink>
-        <p>{post.episode}</p>
-        <p>{post.quote}</p>
-        <LikeButton
+        <p>{post.strCategory}</p>
+        <p>{post.strInstructions}</p>
+        {/* <LikeButton
           insights={props.insights}
           setInsights={props.setInsights}
           id={post.id}
@@ -69,7 +69,7 @@ function Post(props) {
           setLog={props.setLog}
           photo={post.photo}
           name={post.name}
-        />
+        /> */}
         <CommentButton
           comments={comments}
           addComment={addComment}

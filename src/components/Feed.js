@@ -1,6 +1,7 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
+import { fetchPosts } from '../features/posts/postSlice';
 
 import Post from './Post';
 import Header from "./Header";
@@ -13,11 +14,19 @@ const StyledFeed = styled.div`
 `;
 
 function Feed(props) {
+  const dispatch = useDispatch();
+  const postStatus = useSelector(state => state.posts.status);
   const posts = useSelector(state => state.posts.entries.map(post => {
+    if (postStatus === 'loading') {
+      return (
+        <h2>Loading....</h2>
+      )
+    }
+
     return (
       <Post
         post={post}
-        key={post.id}
+        key={post.idDrink}
         insights={props.insights}
         setInsights={props.setInsights}
         log={props.log}
@@ -25,6 +34,12 @@ function Feed(props) {
       />
     )
   }));
+
+  useEffect(() => {
+    if (postStatus === 'idle') {
+      dispatch(fetchPosts())
+    }
+  }, [postStatus, dispatch])
 
   return (
     <div>
