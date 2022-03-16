@@ -1,10 +1,22 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-import ross from '../../ross.jpeg';
-import rossBg from '../../ross-bg.jpeg';
-import monica from '../../monica.jpeg';
-import monicaBg from '../../monica-bg.jpeg';
-import chandler from '../../chandler.jpg';
-import chandlerBg from '../../chandler-bg.jpeg';
+import { createSlice, PayloadAction, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { ReducerAction } from 'react';
+import type { RootState } from '../../app/store';
+
+interface PostsState {
+  entries: Array<{ id: string, name: string, episode: string, quote: string, reactions: { likes: number, comments: number } }>
+  activity: Array<{}>,
+  openDrawer: Boolean,
+  status: "idle" | "loading" | "failed" | "succeeded",
+  error: string | null | undefined,
+}
+
+const initialState: PostsState = {
+  entries: [],
+  activity: [],
+  openDrawer: false,
+  status: 'idle',
+  error: null,
+}
 
 const api = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
 
@@ -19,16 +31,10 @@ export const fetchPosts = createAsyncThunk(
 
 export const postsSlice = createSlice({
   name: 'posts',
-  initialState: {
-    entries: [],
-    activity: [],
-    openDrawer: false,
-    status: 'idle',
-    error: null,
-  },
+  initialState,
   reducers: {
     addPost: {
-      reducer(state, action) {
+      reducer(state, action: PayloadAction<{ id: string, name: string, episode: string, quote: string, reactions: { likes: number, comments: number } }>) {
         state.entries.push(action.payload);
       },
       prepare(name, episode, quote) {
@@ -48,10 +54,10 @@ export const postsSlice = createSlice({
     },
     updateReactions: (state, action) => {
       // update likes or comments
-      const { id, reaction, message } = action.payload;
+      const { id, reaction }: { id: string, reaction: number } = action.payload;
       const existingPost = state.entries.find(post => post.id === id);
       if (existingPost) {
-        existingPost.reactions[reaction] += 1;
+        //existingPost.reactions[reaction] += 1;
       }
 
       state.activity.push(action.payload);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../app/hooks';
 import styled from "styled-components";
 import { fetchPosts } from '../features/posts/postSlice';
 
@@ -13,10 +13,10 @@ const StyledFeed = styled.div`
   flex-wrap: wrap;
 `;
 
-function Feed(props) {
-  const dispatch = useDispatch();
-  const postStatus = useSelector(state => state.posts.status);
-  const posts = useSelector(state => state.posts.entries.map(post => {
+function Feed(props: any) {
+  const dispatch = useAppDispatch();
+  const postStatus = useAppSelector(state => state.posts.status);
+  const posts = useAppSelector(state => state.posts.entries.map((post: any) => {
     if (postStatus === 'loading') {
       return (
         <h2>Loading....</h2>

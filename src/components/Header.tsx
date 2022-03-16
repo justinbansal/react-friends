@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   align-items: center;
 `;
 
-function Header(props) {
+function Header(props: any) {
   return (
     <StyledHeader>
       <h1>{props.title}</h1>

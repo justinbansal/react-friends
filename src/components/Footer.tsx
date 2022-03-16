@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   padding: 1em;
 `;
 
-function Footer(props) {
+function Footer(props: any) {
   return (
     <StyledFooter>
       <h3>{props.info}</h3>

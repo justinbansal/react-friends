@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../app/hooks';
 import { addPost } from './postSlice';
 import styled from "styled-components";
 
@@ -35,17 +35,17 @@ function AddPost() {
   const [episode, setEpisode] = useState('');
   const [quote, setQuote] = useState('');
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  function handleNameChange(e) {
+  function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
   }
 
-  function handleEpisodeChange(e) {
+  function handleEpisodeChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEpisode(e.target.value);
   }
 
-  function handleQuoteChange(e) {
+  function handleQuoteChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuote(e.target.value);
   }
 

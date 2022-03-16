@@ -28,14 +28,14 @@ interface Post {
   posts: any[],
 }
 
-function Post(props: Post) {
+function Post(props: any) {
   const [comments, addComment] = useState<Array<number>>([]);
   const [commentView, changeView] = useState<boolean>(false);
 
-  let { postId } = useParams();
+  let { postId } = useParams() as any;
   postId = parseInt(postId, 10);
 
-  const post = postId ? props.posts.filter(post => post.id === postId)[0] : props.post;
+  const post = postId ? props.posts.filter((post: { id: number }) => post.id === postId)[0] : props.post;
 
   useEffect(() => {
     document.title = `You clicked on a post by ${post.author}.`
