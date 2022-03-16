@@ -9,7 +9,7 @@ const StyledComment = styled.div`
   text-align: left;
 `;
 
-function Comment(props) {
+function Comment(props: { comment: string }) {
   return (
     <StyledComment>
       <p>{props.comment}</p>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -15,15 +15,15 @@ const StyledForm = styled.form`
   }
 `;
 
-function CommentForm(props) {
+function CommentForm(props: any) {
   const [value, setValue] = useState('');
 
-  function handleChange(e) {
-    setValue(e.target.value);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
 
     if (!value) return;
 
@@ -38,7 +38,14 @@ function CommentForm(props) {
     // New logic for updating our log state with comment
     const insights = props.insights.slice();
     const log = props.log.slice();
-    insights.filter(post => {
+
+    interface Post {
+      id: string
+      comments: number,
+      author: string
+    }
+
+    insights.filter((post: Post) => {
       if (post.id === props.id) {
         post.comments += 1;
         log.push({
@@ -65,7 +72,7 @@ function CommentForm(props) {
           onChange={handleChange}
         />
       </label>
-      <input type="submit" value="Submit"/>
+      <input type="submit" value="Submit" />
     </StyledForm>
   )
 }

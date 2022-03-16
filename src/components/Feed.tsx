@@ -27,10 +27,6 @@ function Feed(props) {
       <Post
         post={post}
         key={post.idDrink}
-        insights={props.insights}
-        setInsights={props.setInsights}
-        log={props.log}
-        setLog={props.setLog}
       />
     )
   }));
@@ -45,12 +41,10 @@ function Feed(props) {
     <div>
       <Header
         title="Fun with Friends"
-        insights={props.insights}
-        log={props.log}
       />
       <AddPost />
       <StyledFeed>
-      {posts}
+        {posts}
       </StyledFeed>
       <Footer info="Fun with Friends 2022"></Footer>
     </div>

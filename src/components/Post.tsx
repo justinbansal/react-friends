@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -24,9 +24,13 @@ const StyledPost = styled.div`
   text-align: center;
 `
 
-function Post(props) {
-  const [comments, addComment] = useState([]);
-  const [commentView, changeView] = useState(false);
+interface Post {
+  posts: any[],
+}
+
+function Post(props: Post) {
+  const [comments, addComment] = useState<Array<number>>([]);
+  const [commentView, changeView] = useState<boolean>(false);
 
   let { postId } = useParams();
   postId = parseInt(postId, 10);
@@ -74,11 +78,7 @@ function Post(props) {
           comments={comments}
           addComment={addComment}
           changeView={changeView}
-          insights={props.insights}
-          setInsights={props.setInsights}
           id={post.id}
-          log={props.log}
-          setLog={props.setLog}
           photo={post.photo}
         ></CommentButton>
         {comments.length > 0 ? (
@@ -86,7 +86,7 @@ function Post(props) {
             changeView={changeView}
             comments={comments}
           />
-        ): null}
+        ) : null}
       </StyledPost>
     )
   }

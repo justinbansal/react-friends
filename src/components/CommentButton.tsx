@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { PrimaryButton } from '../styles/buttons';
@@ -8,7 +8,15 @@ const StyledButton = styled(PrimaryButton)`
   margin: 1em;
 `;
 
-function CommentButton(props) {
+interface Comment {
+  id: string,
+  comments: [],
+  addComment: '',
+  changeView: '',
+  photo: '',
+}
+
+function CommentButton(props: Comment) {
   const [commenting, commentMode] = useState(false);
   return (
     <div>
@@ -18,11 +26,7 @@ function CommentButton(props) {
           addComment={props.addComment}
           commentMode={commentMode}
           changeView={props.changeView}
-          insights={props.insights}
-          setInsights={props.setInsights}
           id={props.id}
-          log={props.log}
-          setLog={props.setLog}
           photo={props.photo}
         />
       ) : null}
